@@ -78,5 +78,6 @@ for cate_id in category_ids:
 
     print("[", category_ids_cnt, "][", cate_id, "]", item_cnt)
     image_augumentation(np.array(images), category_dir)
+    images.clear()
     # if category_ids_cnt > 1:
     #     break
