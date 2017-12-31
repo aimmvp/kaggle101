@@ -25,9 +25,9 @@ train_collection = train_db.train
 category_names = pd.read_csv('input/category_names.csv', usecols=[0], dtype=int)
 category_ids = category_names.values
 item_cnt = 0
-MIN_CNT, MAX_CNT = 500, 5000
+MIN_CNT, MAX_CNT = 500, 900
 split_cnt = 0
-dataset_file_path_base = '../../input/'
+dataset_file_path_base = '../../CDiscount/input/'
 dataset_file_name = ""
 
 if not os.path.exists(dataset_file_path_base):
@@ -46,5 +46,7 @@ for cate_id in category_ids:
 
 print(MIN_CNT, " ~ ", MAX_CNT, " CNT : ", split_cnt)
 # 500  ~  5000  CNT :  1361
+# 500  ~  900  CNT :  501
+
 
 
