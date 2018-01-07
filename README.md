@@ -36,7 +36,7 @@
   - Make bson file at file system per category_id 
 
  4. CDiscount/ace19_make_file.py
-  - save image files at file system per training / validation /testing  
+  - save image files at file system per training(80%) / validation(10%) /testing(10%)  
   - augumentation images by ImageDataGenerator only 350 images
 
  5. CDiscount/ace19_train.py
