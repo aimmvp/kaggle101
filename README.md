@@ -24,7 +24,7 @@
   # --c : collection 명
   ```
 
- 2. CDiscount/ace19_split_collection.py
+ 2. ace19_split_collection.py
   - Make index for train.bson
   ```
   train_collection.create_index("category_id")
@@ -32,14 +32,14 @@
   - split collection per category_id only 100 collection
     ( 200 ~ 300 개의 item 을 가지고 있는 카테고리 아이디 사용)
 
- 3. CDiscount/ace19_make_bson.py
+ 3. ace19_make_bson.py
   - Make bson file at file system per category_id 
 
- 4. CDiscount/ace19_make_file.py
+ 4. ace19_make_file.py
   - save image files at file system per training(80%) / validation(10%) /testing(10%)  
   - augumentation images by ImageDataGenerator only 350 images
 
- 5. CDiscount/ace19_train.py
+ 5. ace19_train.py
   - training model(mobilenet)
 
 ```
