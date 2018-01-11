@@ -8,7 +8,7 @@ from keras.preprocessing.image import ImageDataGenerator
 import mobilenet
 import datetime
 
-ACE19_BASE = "../../ace19/"
+ACE19_BASE = "../ace19/"
 bson_file_path = ACE19_BASE + "input"
 
 
@@ -56,13 +56,13 @@ train_dirpath = ACE19_BASE + "training"
 train_file_list = os.listdir(train_dirpath)
 model, tb_callback = create_model(num_classes=len(train_file_list))
 
-callback_best_only =  ModelCheckpoint('./models/weights.{epoch:02d}-{val_loss:.2f}.hdf5', save_best_only=True, period=5)
+callback_best_only =  ModelCheckpoint('./models/weights.{epoch:02d}-{val_loss:.2f}.hdf5', save_best_only=True, period=2)
 
 print("START====>", datetime.datetime.now())
 model.fit_generator(train_generator,
                     steps_per_epoch=52,
                     validation_data=valid_generator,
                     validation_steps=6,
-                    epochs=30,
+                    epochs=20,
                     callbacks=[callback_best_only, tb_callback])
 print("END====>", datetime.datetime.now())
