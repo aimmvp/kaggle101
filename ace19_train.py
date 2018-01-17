@@ -58,11 +58,30 @@ model, tb_callback = create_model(num_classes=len(train_file_list))
 
 callback_best_only =  ModelCheckpoint('./models/weights.{epoch:02d}-{val_loss:.2f}.hdf5', save_best_only=True, period=2)
 
-print("START====>", datetime.datetime.now())
+print("TRAIN START====>", datetime.datetime.now())
 model.fit_generator(train_generator,
                     steps_per_epoch=52,
                     validation_data=valid_generator,
                     validation_steps=6,
                     epochs=20,
                     callbacks=[callback_best_only, tb_callback])
-print("END====>", datetime.datetime.now())
+print("TRAIN END====>", datetime.datetime.now())
+
+print("EVALUATE START====>", datetime.datetime.now())
+test_datagen = ImageDataGenerator(rescale=1./255)
+test_generator = test_datagen.flow_from_directory(ACE19_BASE + 'testing',
+                                                  target_size=(160, 160),
+                                                  batch_size=64,
+                                                  class_mode='binary')
+test_scores = model.evaluate_generator(test_generator, steps=5)
+print("TEST END====>", datetime.datetime.now())
+print("%s: %.2f%%" %(model.metrics_names[1], test_scores[1]*100))
+
+print("PREDICT START====>", datetime.datetime.now())
+output = model.predict_generator(test_generator, steps=5)
+np.set_printoptions(formatter={'float': lambda x: "{0:0.3f}".format(x)})
+print(test_generator.class_indices)
+print("PREDICT END====>", datetime.datetime.now())
+print(output)
+
+

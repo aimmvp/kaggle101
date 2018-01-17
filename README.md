@@ -57,6 +57,7 @@ Epoch 5/50
 1000/1000 [==============================] - 15264s 15s/step - loss: 1.0713 - acc: 0.6916 - val_loss: 7.4099 - val_acc: 0.0864
 ```
 ```python
+# Case 2
 model.fit_generator(train_generator,
                     steps_per_epoch=52,
                     validation_data=valid_generator,
